@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
-import { firebase } from '.,/firebase';
+import { firebase } from '../firebase';
 import { collatedTasksExist } from '../helpers';
 
 export const useTasks = selectedProject => {
@@ -11,16 +11,16 @@ export const useTasks = selectedProject => {
         let unsubscribe = firebase
             .firestore()
             .collection('tasks')
-            .where('userId', "==", "1");
+            .where('userid', "==", "1");
 
             unsubscribe = 
                 selectedProject && !collatedTasksExist(selectedProject) 
-                    ? (unsubscribe = unsubscribe.where("projectid", "==", "selectedProject"))
+                    ? (unsubscribe = unsubscribe.where("projectid", "==", selectedProject))
                     : selectedProject === "TODAY"
                     ? (unsubscribe = unsubscribe.where(
                         "date", 
                         "==", 
-                        moment().format('DD/MM/YYYY')
+                        moment().format('DD-MM-YYYY')
                       ))
                     : selectedProject === 'INBOX' || selectedProject === 0
                     ? (unsubscribe = unsubscribe.where('date', '==', ''))
@@ -46,7 +46,6 @@ export const useTasks = selectedProject => {
 
             return () => unsubscribe();
     }, [selectedProject]); // ! empty array means run this once
-
     return { tasks, archivedTasks };
 };
 
@@ -71,7 +70,7 @@ export const useProjects = () => {
                     setProjects(allProjects);
                 }
         });
-    }, [projects])
+    }, [projects]);
 
-    return { projects, setProjects }
+    return { projects, setProjects };
 };
