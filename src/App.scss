@@ -344,6 +344,7 @@ header {
 //  show confirm delete
 .project-delete-modal {
     position: relative;
+
     &__inner {
         @include box-overlay();
         z-index: 99;
@@ -440,4 +441,48 @@ header {
             }
         }
     }
+}
+
+// add project
+// -------------------------------
+.add-project {
+    padding-left: 13px;
+    padding-right: 20px;
+    margin-top: 20px;
+
+    &__input {
+        margin-bottom: 20px;
+    }
+
+    &__name {
+        width: 100%;
+        border: 1px solid #ddd;
+        background-color: white !important;
+        border-radius: 3px;
+        height: 35px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    &__submit {
+        @include btn(100px);
+    }
+
+    &__cancel {
+        @include cancel();
+    }
+}
+
+// add task
+// -------------------------------
+.add-task__text, .add-project__text {
+    display: inline-block;
+    color: #545454;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.add-task__plus, .add-project__plus {
+    color: #dd4b39;
+    font-size: 18px;
 }
