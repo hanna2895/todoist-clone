@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa'
 import { useSelectedProjectValue } from '../../context';
 import { Projects } from './Projects';
+import { AddProject } from './AddProject';
 
 export const Sidebar = () => {
     const { setSelectedProject } = useSelectedProjectValue();
@@ -45,7 +46,7 @@ export const Sidebar = () => {
                 {showProjects && <Projects />}
             </ul>
 
-            {showProjects && <Projects />}
+            {showProjects && <AddProject />}
         </div>
     )
 }
